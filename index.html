@@ -25,20 +25,24 @@
 
   /* ---------- Barra superior ---------- */
   .nav{position:sticky;top:0;z-index:30;background:var(--bg);border-bottom:1px solid var(--line)}
-  .nav-in{max-width:1180px;margin:0 auto;padding:10px 18px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px}
-  .nav-social{display:flex;gap:2px;justify-self:start;margin-left:-8px}
-  .soc{width:38px;height:38px;display:flex;align-items:center;justify-content:center;color:var(--muted);transition:color .15s}
+  .nav-in{max-width:1180px;margin:0 auto;padding:6px 18px 10px;display:grid;grid-template-columns:1fr auto;grid-template-areas:"contact ship" "brand brand";align-items:center;row-gap:6px;column-gap:10px}
+  .nav-social{grid-area:contact;display:flex;align-items:center;gap:0;justify-self:start}
+  .nav-social .lbl{font-size:.72rem;font-weight:600;letter-spacing:.06em;color:var(--text);margin-right:6px}
+  .ship{grid-area:ship;justify-self:end;text-align:right;font-size:.64rem;letter-spacing:.07em;text-transform:uppercase;color:var(--cream);line-height:1.3}
+  .soc{width:34px;height:34px;display:flex;align-items:center;justify-content:center;color:var(--muted);transition:color .15s}
   .soc:hover{color:var(--cream)}
   .soc svg{width:20px;height:20px}
-  .brand{display:flex;align-items:center;gap:12px;justify-self:center}
+  .brand{grid-area:brand;display:flex;align-items:center;gap:12px;justify-self:center}
   .brand img{height:42px;width:auto;max-width:110px;object-fit:contain;display:block;mix-blend-mode:lighten}
   .brand img[hidden]{display:none}
   .brand span{font-family:var(--serif);font-weight:700;font-size:1.05rem;letter-spacing:.3em;padding-left:.3em;text-transform:uppercase;line-height:1}
   @media(min-width:700px){
-    .nav-in{padding:12px 28px}
+    .nav-in{padding:12px 28px;grid-template-columns:1fr auto 1fr;grid-template-areas:"contact brand ship"}
     .brand img{height:56px;max-width:150px}
     .brand span{font-size:1.5rem;letter-spacing:.34em}
     .soc{width:42px;height:42px}
+    .nav-social .lbl{font-size:.82rem;margin-right:8px}
+    .ship{font-size:.76rem;letter-spacing:.1em}
   }
 
   /* ---------- Entrada ---------- */
@@ -64,12 +68,14 @@
   .cat{max-width:1180px;margin:0 auto;padding:0 18px 100px;scroll-margin-top:84px}
   @media(min-width:880px){.cat{padding:0 28px 110px}}
   .cat-head{display:flex;flex-direction:column;gap:14px;padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:28px}
-  @media(min-width:700px){.cat-head{flex-direction:row;align-items:flex-end;justify-content:space-between}}
+  @media(min-width:900px){.cat-head{display:grid;grid-template-columns:1fr auto 1fr;align-items:end;gap:20px}.cat-head .tabs:last-child{justify-self:end}}
   .cat-head h2{font-family:var(--serif);font-weight:600;font-size:2.1rem;line-height:1}
-  .tabs{display:flex;gap:24px}
+  .tabs{display:flex;align-items:center;gap:22px}
+  .tlab{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
   .tab{padding:6px 0;font-size:.88rem;color:var(--muted);border-bottom:1px solid transparent;transition:color .15s}
   .tab:hover{color:var(--text)}
   .tab.on{color:var(--text);border-bottom-color:var(--cream)}
+  .tab:disabled{opacity:.28;cursor:not-allowed}
 
   .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:30px 14px}
   @media(min-width:760px){.grid{grid-template-columns:repeat(3,1fr);gap:40px 22px}}
@@ -141,6 +147,7 @@
 <header class="nav">
   <div class="nav-in">
     <div class="nav-social">
+      <span class="lbl">Contáctanos</span>
       <a class="soc" data-wa target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.500a8.500 8.500 0 0 1-12.400 7.500L3 20.500l1.600-5.400A8.500 8.500 0 1 1 21 11.500z"/><path d="M9 9.200c.2 2.400 2.400 4.600 5 5.600l1.200-1.300-1.800-.9-.8.700c-.9-.4-1.600-1.100-2-2l.7-.8-.9-1.800z"/></svg>
       </a>
@@ -155,7 +162,7 @@
       <img id="logo" alt="Logo" hidden>
       <span id="storeName">INSIGNIA</span>
     </a>
-    <div></div>
+    <div class="ship">Envíos a toda Venezuela</div>
   </div>
 </header>
 
@@ -186,7 +193,8 @@
 <section class="cat" id="catalogo">
   <div class="cat-head">
     <h2>Catálogo</h2>
-    <div class="tabs" id="tabs">
+    <div class="tabs" id="sizeTabs" role="group" aria-label="Filtrar por talla"><span class="tlab">Talla</span></div>
+    <div class="tabs" id="tabs" role="group" aria-label="Filtrar por disponibilidad">
       <button type="button" class="tab on" data-f="all">Todas</button>
       <button type="button" class="tab" data-f="disponible">Disponibles</button>
       <button type="button" class="tab" data-f="encargo">Por encargo</button>
@@ -233,9 +241,9 @@
    ============================================================ */
 const CONFIG = {
   storeName:   "INSIGNIA",                             // Título que aparece junto al logo
-  whatsapp:    "573000000000",                         // Código de país + número, sin + ni espacios (Colombia = 57)
-  instagram:   "tu_instagram",                         // Tu usuario, sin @
-  tiktok:      "tu_tiktok",                            // Tu usuario, sin @
+  whatsapp:    "5804246984213",                         // Código de país + número, sin + ni espacios (Colombia = 57)
+  instagram:   "barbaramirezz",                         // Tu usuario, sin @
+  tiktok:      "janicenicholee",                            // Tu usuario, sin @
   logoDriveId: "1N2vAhGkUKHUZZ56f-r0JG-TUmgw0NxCO",    // ID del logo en Google Drive
   logoImg:     ""                                      // Opcional: ruta de un logo subido al repositorio, ej. "logo.png" (se usa en vez de Drive)
 };
@@ -248,6 +256,9 @@ const SIZES = {
   agotada:    ["S", "M"]
 };
 
+/* Opciones del filtro de talla que ven los clientes (agrega "XL" si quieres que también salga) */
+const SIZE_FILTERS = ["S", "M", "L"];
+
 /* Cada camiseta:
    id:      ID del archivo de Google Drive (lo que va entre /d/ y /view en el link). null = espacio vacío "Próximamente"
    name:    nombre que verá el cliente, por ejemplo "Real Madrid"
@@ -259,17 +270,17 @@ const SIZES = {
    hero:    (opcional) true = aparece en el recuadro de la portada (si ninguna lo tiene, salen las 3 primeras)
 */
 const SHIRTS = [
-  { id:"17XcEBzHg2NBGFa08gem5ozn-VVu-vxtc", name:"Real Madrid",  detail:"Blanca",         price:"", status:"disponible" },
-  { id:"1oxTmNWpIQOtHMtcDu5phawjnn9Jhl5FD", name:"FC Barcelona", detail:"Negra y morada", price:"", status:"disponible" },
-  { id:"1ztJDWLKjnT_n72HPmrIPs20C6Yv6jRGa", name:"FC Barcelona", detail:"Azulgrana",      price:"", status:"disponible" },
-  { id:"1o6GTQTiK5jfhHdvXtJpv8rOAFs--sJ5e", name:"Real Madrid",  detail:"Verde oscuro",   price:"", status:"disponible" },
-  { id:"1GaktCyAuoNmTAmcvvFXEFhJxS-WnVotY", name:"Brasil",       detail:"Amarilla",       price:"", status:"disponible" },
-  { id:"1QF4i-f1Wh81DxaIyp6ZztihJA2SLvNlg", name:"Noruega",      detail:"Roja",           price:"", status:"disponible" },
-  { id:"12k0iDTMdd9TzHx8hCHbxYmtIW9aXHfL1", name:"España",       detail:"Blanca",         price:"", status:"disponible" },
+  { id:"17XcEBzHg2NBGFa08gem5ozn-VVu-vxtc", name:"Real Madrid 26-27",  detail:"Local",         price:"30", status:"disponible" },
+  { id:"1oxTmNWpIQOtHMtcDu5phawjnn9Jhl5FD", name:"FC Barcelona 26-27", detail:"Edicion Kobe Bryant", price:"30", status:"disponible" },
+  { id:"1ztJDWLKjnT_n72HPmrIPs20C6Yv6jRGa", name:"FC Barcelona 26-27", detail:"Local",      price:"30", status:"disponible" },
+  { id:"1o6GTQTiK5jfhHdvXtJpv8rOAFs--sJ5e", name:"Real Madrid 26-27",  detail:"Visitante",   price:"30", status:"disponible" },
+  { id:"1GaktCyAuoNmTAmcvvFXEFhJxS-WnVotY", name:"Brasil 04-06",       detail:"Local",       price:"30", status:"disponible" },
+  { id:"1QF4i-f1Wh81DxaIyp6ZztihJA2SLvNlg", name:"Noruega Mundial",      detail:"Local",           price:"30", status:"disponible" },
+  { id:"12k0iDTMdd9TzHx8hCHbxYmtIW9aXHfL1", name:"España Mundial",       detail:"Visitante",         price:"30", status:"disponible" },
+  { id:"1HVpmNu4kf97A5EJNVK47EeCRb-BZFV_b", name:"Arsenal 26-27",  detail:"Local",               price:"30", status:"disponible" },
+  { id:"15Hz_0TK_wxMaQ1f4FemM260de6A-sJHG", name:"Los Santos 12-13",  detail:"Local",               price:"30", status:"disponible" },
+  { id:"1b1QIYfPK-z4AznMTUwnhiXxkDcm48Pha", name:"Argentina Mundial",  detail:"Local",               price:"30", status:"disponible" },
   /* Espacios vacíos: cuando tengas la foto, cambia id:null por el ID de Drive y completa nombre y estado */
-  { id:null, name:"Próximamente", price:"", status:"agotada" },
-  { id:null, name:"Próximamente", price:"", status:"agotada" },
-  { id:null, name:"Próximamente", price:"", status:"agotada" },
   { id:null, name:"Próximamente", price:"", status:"agotada" },
   { id:null, name:"Próximamente", price:"", status:"agotada" },
   { id:null, name:"Próximamente", price:"", status:"agotada" },
@@ -311,7 +322,8 @@ document.querySelectorAll("[data-ig]").forEach(a => a.href = `https://instagram.
 document.querySelectorAll("[data-tt]").forEach(a => a.href = `https://www.tiktok.com/@${CONFIG.tiktok}`);
 
 /* ---------- Catálogo ---------- */
-let filter = "all";
+let filter = "all", sizeF = "all";
+const matchesWith = (s, f, z) => !isEmpty(s) && (f === "all" || statusOf(s) === f) && (z === "all" || sizesOf(s).includes(z));
 
 function renderGrid() {
   const grid = $("#grid");
@@ -320,7 +332,7 @@ function renderGrid() {
   SHIRTS.forEach((s, i) => {
     const empty = isEmpty(s);
     const stt = statusOf(s);
-    if (filter !== "all" && (empty || stt !== filter)) return;
+    if ((filter !== "all" || sizeF !== "all") && !matchesWith(s, filter, sizeF)) return;
 
     const el = document.createElement(empty ? "div" : "button");
     el.className = "card" + (empty ? " placeholder" : "") + (!empty && stt === "agotada" ? " soldout" : "");
@@ -346,13 +358,35 @@ function renderGrid() {
     shown++;
   });
   $("#none").hidden = shown > 0;
+  renderTabs();
 }
 
+/* marca la opción activa y apaga las que no darían ninguna camiseta */
+function renderTabs() {
+  document.querySelectorAll("#tabs .tab").forEach(b => {
+    const n = SHIRTS.filter(s => matchesWith(s, b.dataset.f, sizeF)).length;
+    b.classList.toggle("on", b.dataset.f === filter);
+    b.disabled = n === 0 && b.dataset.f !== filter;
+  });
+  document.querySelectorAll("#sizeTabs .tab").forEach(b => {
+    const n = SHIRTS.filter(s => matchesWith(s, filter, b.dataset.z)).length;
+    b.classList.toggle("on", b.dataset.z === sizeF);
+    b.disabled = n === 0 && b.dataset.z !== sizeF;
+  });
+}
+
+$("#tabs").innerHTML = [["all", "Todas"], ["disponible", "Disponibles"], ["encargo", "Por encargo"]]
+  .map(([f, t]) => `<button type="button" class="tab" data-f="${f}">${t}</button>`).join("");
+$("#sizeTabs").insertAdjacentHTML("beforeend",
+  ["all", ...SIZE_FILTERS].map(z => `<button type="button" class="tab" data-z="${z}">${z === "all" ? "Todas" : z}</button>`).join(""));
+
 $("#tabs").addEventListener("click", e => {
-  const b = e.target.closest(".tab"); if (!b) return;
-  document.querySelectorAll(".tab").forEach(x => x.classList.toggle("on", x === b));
-  filter = b.dataset.f;
-  renderGrid();
+  const b = e.target.closest(".tab"); if (!b || b.disabled) return;
+  filter = b.dataset.f; renderGrid();
+});
+$("#sizeTabs").addEventListener("click", e => {
+  const b = e.target.closest(".tab"); if (!b || b.disabled) return;
+  sizeF = b.dataset.z; renderGrid();
 });
 
 /* ---------- Ventana de detalle ---------- */
