@@ -1,0 +1,1094 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>INSIGNIA · Camisetas de fútbol</title>
+<meta name="description" content="Camisetas de fútbol de clubes y selecciones. Toca una camiseta para ver tallas y disponibilidad.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Hanken+Grotesk:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Hanken+Grotesk:wght@400;500;600&display=swap"></noscript>
+<link rel="preconnect" href="https://drive.google.com">
+<link rel="preconnect" href="https://lh3.googleusercontent.com" crossorigin>
+<style>
+  :root{
+    --bg:#0b0a09; --paper:#13110e; --line:#2b261e; --text:#ece3d0; --muted:#8f8774; --cream:#e0cfa9; --ink:#1c160a;
+    --order:#d58f5c; --warn:#b86a5f;
+    --serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+    --sans:"Hanken Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased}
+  ::selection{background:var(--cream);color:var(--ink)}
+  a{color:inherit;text-decoration:none}
+  button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+  svg{display:block}
+
+  /* ---------- Barra superior ---------- */
+  .nav{position:sticky;top:0;z-index:30;background:var(--bg);border-bottom:1px solid var(--line)}
+  .nav-in{max-width:1180px;margin:0 auto;padding:6px 18px 10px;display:grid;grid-template-columns:1fr auto;grid-template-areas:"contact ship" "brand brand";align-items:center;row-gap:6px;column-gap:10px}
+  .nav-social{grid-area:contact;display:flex;align-items:center;gap:6px;justify-self:start}
+  .nav-social .lbl{font-size:.76rem;font-weight:700;letter-spacing:.06em;color:var(--text);margin-right:4px}
+  .ship{grid-area:ship;justify-self:end;text-align:right;font-size:.64rem;letter-spacing:.07em;text-transform:uppercase;color:var(--cream);line-height:1.3}
+  .soc{width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:transparent;border:1.5px solid var(--cream);color:var(--cream);transition:background .15s,color .15s,transform .15s}
+  .soc:hover{background:var(--cream);color:var(--ink);transform:translateY(-2px)}
+  .soc svg{width:20px;height:20px}
+  .brand{grid-area:brand;display:flex;align-items:center;gap:12px;justify-self:center}
+  .brand img{height:42px;width:auto;max-width:110px;object-fit:contain;display:block;mix-blend-mode:lighten}
+  .brand img[hidden]{display:none}
+  .brand span{font-family:var(--serif);font-weight:700;font-size:1.05rem;letter-spacing:.3em;padding-left:.3em;text-transform:uppercase;line-height:1}
+  @media(min-width:700px){
+    .nav-in{padding:12px 28px;grid-template-columns:1fr auto 1fr;grid-template-areas:"contact brand ship"}
+    .brand img{height:56px;max-width:150px}
+    .brand span{font-size:1.5rem;letter-spacing:.34em}
+    .soc{width:42px;height:42px}
+    .soc svg{width:23px;height:23px}
+    .nav-social{gap:6px}
+    .nav-social .lbl{font-size:.92rem;margin-right:8px}
+    .ship{font-size:.76rem;letter-spacing:.1em}
+  }
+
+  /* ---------- Celular: encabezado más aireado ---------- */
+  @media(max-width:699px){
+    .nav{position:relative}
+    .nav-in{padding:10px 16px 8px;grid-template-areas:"brand brand" "contact ship";row-gap:8px;column-gap:0}
+    .brand{gap:10px}
+    .brand img{height:46px}
+    .brand span{font-size:1.2rem}
+    .nav-social{padding-top:8px;border-top:1px solid var(--line);align-self:stretch;align-items:center}
+    .ship{padding-top:8px;border-top:1px solid var(--line);align-self:stretch;display:flex;align-items:center;justify-content:flex-end;font-size:.6rem}
+  }
+
+  /* ---------- Entrada ---------- */
+  .intro{max-width:1180px;margin:0 auto;padding:40px 18px 56px;display:grid;gap:34px}
+  @media(min-width:880px){.intro{grid-template-columns:5fr 6fr;gap:72px;align-items:center;padding:64px 28px 80px}}
+  .intro h1{font-family:var(--serif);font-weight:500;font-size:clamp(2.7rem,8vw,4.9rem);line-height:1;letter-spacing:-.01em}
+  .intro h1 em{font-style:italic;color:var(--cream);font-weight:500}
+  .intro p{margin-top:20px;max-width:34ch;color:var(--muted);font-size:.98rem}
+  .go{display:inline-block;margin-top:26px;font-size:.88rem;font-weight:500;border-bottom:1px solid var(--cream);padding-bottom:3px;color:var(--cream);transition:letter-spacing .2s}
+  .go:hover{letter-spacing:.03em}
+  .go2{margin-left:0}
+  .go-row{margin-top:26px;display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px}
+  .go-row .go{margin:0}
+  .pers{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;background:var(--cream);color:var(--ink);font-size:.86rem;font-weight:600;letter-spacing:.02em;box-shadow:0 0 0 1px var(--cream),0 6px 20px rgba(224,207,169,.18);transition:filter .15s,transform .15s}
+  .pers:hover{filter:brightness(1.08);transform:translateY(-1px)}
+  .pers span{transition:transform .15s}.pers:hover span{transform:translateX(3px)}
+
+  .frame{justify-self:end;width:100%;max-width:470px}
+  @media(max-width:879px){
+    .intro{padding:26px 16px 38px;gap:24px}
+    .intro h1{font-size:clamp(2.2rem,10vw,2.8rem);line-height:1.04}
+    .intro p{margin-top:12px;font-size:.94rem;max-width:36ch}
+    .go-row{margin-top:18px;gap:12px 20px}
+    .frame{justify-self:center;max-width:340px}
+    .frame-img{aspect-ratio:1/1}
+    .frame-cap{padding-top:10px}
+    .frame-cap .nm{font-size:1.12rem}
+  }
+  .frame-img{position:relative;aspect-ratio:4/5;border:1px solid var(--line);background:var(--paper);cursor:pointer;overflow:hidden}
+  .frame-img img{width:100%;height:100%;object-fit:cover;object-position:50% 55%;display:block;transition:opacity .3s}
+  .frame-cap{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding-top:12px}
+  .frame-cap .nm{font-family:var(--serif);font-size:1.25rem;font-weight:600;line-height:1.1}
+  .frame-cap .dt{font-size:.8rem;color:var(--muted)}
+  .arrows{display:flex;align-items:center;gap:14px;font-size:.78rem;color:var(--muted);white-space:nowrap}
+  .arrows button{font-size:1.1rem;line-height:1;color:var(--text);padding:2px 4px}
+  .arrows button:hover{color:var(--cream)}
+
+  /* ---------- Galería de fotos (deslizable) ---------- */
+  .gal{position:relative;width:100%;height:100%;overflow:hidden;touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+  .track{display:flex;width:100%;height:100%;transition:transform .4s cubic-bezier(.22,.7,.2,1)}
+  .track.drag{transition:none}
+  .slide{flex:0 0 100%;width:100%;height:100%;position:relative}
+  .slide img{width:100%;height:100%;object-fit:cover;object-position:50% 55%;display:block;-webkit-user-drag:none;user-select:none;pointer-events:none}
+  .gal .empty{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--muted);font-family:var(--serif);font-style:italic;font-size:1.05rem}
+  .gdots{position:absolute;left:0;right:0;bottom:12px;display:flex;justify-content:center;gap:5px;pointer-events:none;z-index:2}
+  .gdots i{width:18px;height:2px;background:rgba(236,227,208,.35);transition:background .2s}
+  .gdots i.on{background:var(--cream)}
+  .garrow{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:34px;height:34px;display:flex;align-items:center;justify-content:center;background:rgba(11,10,9,.72);border:1px solid var(--line);color:var(--text);font-size:1.3rem;line-height:1;opacity:0;transition:opacity .15s}
+  .garrow:hover{border-color:var(--cream);color:var(--cream)}
+  .garrow.prev{left:8px} .garrow.next{right:8px}
+  .card:hover .garrow,.modal .garrow{opacity:1}
+  @media(hover:none){.card .garrow{display:none}}
+
+  /* zoom estilo tienda: lupa sobre la foto + ventana de ampliación */
+  .gal.zoomable{cursor:crosshair}
+  .lens{position:absolute;display:none;z-index:2;pointer-events:none;border:1px solid var(--cream);background:rgba(224,207,169,.16)}
+  .zoompane{position:absolute;top:0;bottom:0;left:50%;right:0;display:none;z-index:6;overflow:hidden;background:var(--paper);border-left:1px solid var(--line);pointer-events:none}
+  .zoompane img{position:absolute;left:0;top:0;max-width:none;object-fit:cover;object-position:50% 55%;will-change:transform}
+  .zhint{position:absolute;left:10px;top:10px;z-index:2;padding:5px 9px;background:rgba(11,10,9,.78);border:1px solid var(--line);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--cream);pointer-events:none}
+  .lb{position:fixed;inset:0;z-index:120;background:#050403;display:none;align-items:center;justify-content:center;overflow:hidden}
+  .lb.open{display:flex}
+  .lb img{max-width:100%;max-height:100%;object-fit:contain;touch-action:none;transition:transform .22s;-webkit-user-drag:none;user-select:none}
+  .lb .lbx{position:absolute;top:12px;right:12px;z-index:2;width:42px;height:42px;display:flex;align-items:center;justify-content:center;background:rgba(11,10,9,.85);border:1px solid var(--line)}
+  .lb .lbh{position:absolute;left:0;right:0;bottom:18px;text-align:center;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);pointer-events:none}
+
+/* ---------- Catálogo ---------- */
+  .cat{max-width:1180px;margin:0 auto;padding:0 18px 100px;scroll-margin-top:84px}
+  @media(min-width:880px){.cat{padding:0 28px 110px}}
+  .cat-head{display:flex;flex-direction:column;gap:14px;padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:28px}
+  @media(min-width:900px){.cat-head{display:grid;grid-template-columns:1fr auto 1fr;align-items:end;gap:20px}.cat-head .tabs:last-child{justify-self:end}}
+  .cat-head h2{font-family:var(--serif);font-weight:600;font-size:2.1rem;line-height:1}
+  .cat-title{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;min-width:0}
+  .disc{flex:1 1 150px;min-width:0;font-size:.76rem;line-height:1.3;color:var(--cream);letter-spacing:.02em}
+  .disc b{color:var(--order);font-weight:700}
+  @media(min-width:900px){.cat-head{grid-template-columns:auto 1fr auto}.cat-head #sizeTabs{justify-self:center}.disc{flex:0 1 auto;font-size:.8rem}}
+  .tabs{display:flex;align-items:center;gap:22px}
+  .tabs[hidden]{display:none}
+  .tlab{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .tab{padding:6px 0;font-size:.88rem;color:var(--muted);border-bottom:1px solid transparent;transition:color .15s}
+  .tab:hover{color:var(--text)}
+  .tab.on{color:var(--text);border-bottom-color:var(--cream)}
+  .tab:disabled{opacity:.28;cursor:not-allowed}
+
+  .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px 14px}
+  @media(min-width:760px){.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:40px 22px}}
+  @media(min-width:1060px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+  .card{display:block;width:100%;text-align:left;cursor:pointer}
+  .card:focus-visible{outline:1px solid var(--cream);outline-offset:4px}
+  .card.placeholder{cursor:default}
+  .card .ph{position:relative;aspect-ratio:4/5;background:var(--paper);border:1px solid var(--line);overflow:hidden;transition:border-color .18s}
+  .card .ph img{width:100%;height:100%;object-fit:cover;display:block}
+  .card:hover .ph{border-color:var(--cream)}
+  .tag{position:absolute;left:0;top:12px;z-index:2;padding:4px 10px 4px 12px;background:var(--bg);color:var(--cream);font-size:.64rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+  .tag.order{background:var(--cream);color:var(--ink)}
+  .tag.no{color:var(--muted);text-decoration:line-through}
+  .cap{padding:11px 1px 0}
+  .cap .top{display:flex;justify-content:flex-start;font-size:.68rem;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+  .cap .nmrow{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-top:3px}
+  .cap .nm{font-family:var(--serif);font-size:1.32rem;font-weight:600;line-height:1.1;min-width:0;flex:1;overflow-wrap:break-word}
+  .card:hover .cap .nm{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+  .cap .dt{font-size:.8rem;color:var(--muted);margin-top:1px}
+  .cap .pr{font-family:var(--serif);font-size:1.6rem;font-weight:700;line-height:1;color:var(--cream);white-space:nowrap;text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+  .was{font-family:var(--sans);font-size:.76rem;font-weight:400;color:var(--muted);text-decoration:line-through;text-decoration-thickness:1px;line-height:1}
+  .off{position:absolute;right:0;top:12px;z-index:2;padding:4px 10px;background:var(--order);color:var(--ink);font-size:.68rem;font-weight:700;letter-spacing:.06em}
+  .mprow{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 12px}
+  .mprow .was{font-size:1rem}
+  .mprow .off{position:static;padding:3px 8px;align-self:center}
+  .cap .pr.ask{font-family:var(--sans);font-size:.78rem;font-weight:400;color:var(--muted)}
+  @media(max-width:759px){.cap .nm{font-size:1.12rem}.cap .pr{font-size:1.3rem}.cap .pr.ask{font-size:.74rem}}
+  .card.soldout .ph img{filter:grayscale(1);opacity:.45}
+  .card .empty{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--muted);font-family:var(--serif);font-style:italic;font-size:1.05rem}
+  .card.placeholder{cursor:default}
+  .card.placeholder .ph{background:transparent;border-style:dashed}
+  .card.placeholder:hover .ph{border-color:var(--line)}
+  .none{text-align:center;color:var(--muted);padding:60px 10px;font-family:var(--serif);font-style:italic;font-size:1.2rem}
+  .none[hidden]{display:none}
+
+  /* ---------- Fan o Jugador ---------- */
+  .vers{border-top:1px solid var(--line);scroll-margin-top:70px}
+  .vers-grid{margin-top:26px;display:grid;gap:16px}
+  @media(min-width:760px){.vers-grid{grid-template-columns:1fr 1fr;gap:22px}}
+  .vcard{border:1px solid var(--line);background:var(--paper);padding:22px 20px 20px;display:flex;flex-direction:column;gap:12px}
+  .vcard h3{font-family:var(--serif);font-weight:600;font-size:1.7rem;line-height:1}
+  .vcard .vsub{color:var(--muted);font-size:.86rem;margin-top:-6px}
+  .vcard ul{list-style:none;display:flex;flex-direction:column;gap:8px;font-size:.92rem}
+  .vcard li{display:flex;gap:10px}
+  .vcard li::before{content:"—";color:var(--cream);flex:0 0 auto}
+  .vcard .vprice{margin-top:auto;padding-top:12px;border-top:1px solid var(--line);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cream)}
+  .chart-tabs{margin-top:16px;gap:22px}
+
+  /* ---------- Guía de tallas ---------- */
+  .guide{border-top:1px solid var(--line);scroll-margin-top:70px}
+  .guide-in{max-width:1180px;margin:0 auto;padding:54px 18px 70px}
+  @media(min-width:880px){.guide-in{padding:76px 28px 90px}}
+  .guide-head h2{font-family:var(--serif);font-weight:600;font-size:2.1rem;line-height:1}
+  .guide-head p{margin-top:10px;color:var(--muted);font-size:.92rem;max-width:52ch}
+  .guide-body{margin-top:28px;display:grid;gap:26px;align-items:center}
+  @media(min-width:880px){.guide-body{grid-template-columns:1fr 280px;gap:56px}}
+  .tbl-wrap{overflow-x:auto;border:1px solid var(--line);background:var(--paper)}
+  .tbl{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+  .tbl th{padding:13px 12px;text-align:center;font-size:.64rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--line);white-space:nowrap}
+  .tbl td{padding:12px;text-align:center;font-size:.92rem;border-bottom:1px solid var(--line)}
+  .tbl tr:last-child td{border-bottom:0}
+  .tbl td:first-child{font-family:var(--serif);font-size:1.3rem;font-weight:700;color:var(--cream)}
+  .tbl tbody tr:hover td{background:rgba(224,207,169,.06)}
+  .tbl tr.off td{color:var(--muted)}
+  @media(max-width:520px){.tbl th{padding:11px 4px;font-size:.56rem;letter-spacing:.06em;white-space:normal}.tbl td{padding:11px 4px;font-size:.82rem}.tbl td:first-child{font-size:1.1rem}}
+  .shirt-fig{justify-self:center;width:100%;max-width:260px;color:var(--cream)}
+  .shirt-fig svg{width:100%;height:auto}
+  .shirt-fig text{font-family:var(--sans);font-size:11px;letter-spacing:.08em;text-transform:uppercase;fill:var(--cream);stroke:none}
+  .shirt-fig figcaption{margin-top:8px;text-align:center;font-size:.76rem;color:var(--muted)}
+  .guide-note{margin-top:20px;color:var(--muted);font-size:.84rem;font-style:italic}
+
+  /* ---------- Pie ---------- */
+  footer{border-top:1px solid var(--line);padding:26px 18px 96px;text-align:center;color:var(--muted);font-size:.8rem}
+  footer b{font-family:var(--serif);font-size:1rem;letter-spacing:.3em;color:var(--text);font-weight:700}
+  .foot-social{display:flex;justify-content:center;gap:8px;margin-top:16px}
+  .fab{position:fixed;right:16px;bottom:16px;z-index:25;display:inline-flex;align-items:center;gap:9px;padding:12px 18px;background:var(--cream);color:var(--ink);font-size:.84rem;font-weight:600;box-shadow:0 8px 24px rgba(0,0,0,.55);transition:filter .15s}
+  .fab:hover{filter:brightness(1.07)}
+  .fab svg{width:18px;height:18px}
+
+  /* ---------- Ventana de detalle ---------- */
+  .scrim{position:fixed;inset:0;background:rgba(5,4,3,.82);z-index:60;opacity:0;pointer-events:none;transition:opacity .2s}
+  .scrim.open{opacity:1;pointer-events:auto}
+  .modal-wrap{position:fixed;inset:0;z-index:80;display:none;align-items:flex-end;justify-content:center}
+  .modal-wrap.open{display:flex}
+  @media(min-width:760px){.modal-wrap{align-items:center;padding:24px}}
+  .modal{position:relative;background:var(--paper);width:100%;max-width:820px;max-height:94vh;overflow:auto;border:1px solid var(--line);display:grid;grid-template-columns:1fr;animation:up .22s ease}
+  @media(min-width:760px){.modal{grid-template-columns:1fr 1fr}}
+  @keyframes up{from{transform:translateY(20px);opacity:0}to{transform:none;opacity:1}}
+  .modal .pic{background:var(--bg);position:relative}
+  .modal .pic .gal{aspect-ratio:4/5;max-height:62vh;height:auto}
+  @media(min-width:760px){.modal .pic{min-height:560px}.modal .pic .gal{position:absolute;inset:0;aspect-ratio:auto;max-height:none}}
+  .modal .body{padding:28px 24px 24px;display:flex;flex-direction:column;gap:16px}
+  .xbtn{position:absolute;top:10px;right:10px;z-index:3;width:38px;height:38px;display:flex;align-items:center;justify-content:center;background:rgba(11,10,9,.8);border:1px solid var(--line)}
+  .xbtn:hover{border-color:var(--cream)}
+  .xbtn svg{width:15px;height:15px}
+  .modal h2{font-family:var(--serif);font-weight:600;font-size:2.1rem;line-height:1.02;padding-right:40px}
+  .modal .subl{color:var(--muted);font-size:.88rem;margin-top:-12px}
+  .modal .mprice{font-family:var(--serif);font-size:1.9rem;line-height:1;color:var(--cream);font-weight:700}
+  .modal .mprice .now{font-family:var(--serif)}
+  .modal .mprice.ask{font-family:var(--sans);color:var(--muted);font-weight:400;font-size:.9rem}
+  .stat{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--cream)}
+  .stat.order{color:var(--order)} .stat.no{color:var(--warn)}
+  .lab{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .sizes{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+  .size{min-width:52px;padding:11px 14px;border:1px solid #3a342a;font-weight:600;font-size:.88rem;transition:border-color .15s}
+  .size:hover{border-color:var(--cream)}
+  .size.sel{background:var(--cream);border-color:var(--cream);color:var(--ink)}
+  .note{color:var(--muted);font-size:.84rem}
+  .labrow{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+  .glink{font-size:.76rem;color:var(--cream);border-bottom:1px solid var(--cream);padding-bottom:1px;white-space:nowrap}
+  .custom{border:1px solid var(--line);padding:14px;display:flex;flex-direction:column;gap:12px}
+  .custom[hidden],.cfields[hidden],.total[hidden]{display:none}
+  .chk{display:flex;align-items:flex-start;gap:12px;cursor:pointer;font-size:.9rem;line-height:1.35}
+  .chk input{appearance:none;-webkit-appearance:none;flex:0 0 20px;width:20px;height:20px;margin-top:1px;border:1.5px solid var(--cream);background:transparent;display:grid;place-items:center;cursor:pointer}
+  .chk input:checked{background:var(--cream)}
+  .chk input:checked::after{content:"";width:5px;height:10px;border:solid var(--ink);border-width:0 2px 2px 0;transform:rotate(45deg) translate(-1px,-1px)}
+  .chk b{color:var(--cream);font-family:var(--serif);font-size:1.05rem;white-space:nowrap}
+  .cfields{display:grid;grid-template-columns:1fr 84px;gap:10px}
+  .cfields input{width:100%;min-width:0;padding:12px;background:var(--bg);border:1px solid #3a342a;color:var(--text);font:inherit;font-size:16px;letter-spacing:.08em;text-transform:uppercase}
+  .cfields input::placeholder{color:var(--muted);letter-spacing:.02em;text-transform:none}
+  .cfields input:focus{outline:0;border-color:var(--cream)}
+  .cfields input#cNum{text-align:center}
+  .cfields.one{grid-template-columns:1fr}
+  .cfields.one input{text-transform:none;letter-spacing:0}
+  .cfields[hidden]{display:none}
+  .opt{display:flex;flex-direction:column;gap:10px}
+  .opt[hidden]{display:none}
+  .opt + .opt{border-top:1px solid var(--line);padding-top:12px}
+  .chk b.tbd{font-family:var(--sans);font-size:.74rem;font-weight:400;color:var(--muted);white-space:normal}
+  .incl{font-size:.84rem;color:var(--cream);border-left:2px solid var(--cream);padding:2px 0 2px 10px}
+  .inc{margin-top:4px;font-size:.7rem;letter-spacing:.04em;color:var(--cream);opacity:.85}
+  .total{display:flex;align-items:baseline;justify-content:space-between;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .total b{font-family:var(--serif);font-size:1.5rem;letter-spacing:0;color:var(--cream)}
+  .cta{margin-top:auto;display:flex;align-items:center;justify-content:center;padding:15px 20px;background:var(--cream);color:var(--ink);font-weight:600;font-size:.9rem;transition:filter .15s}
+  .cta:hover{filter:brightness(1.07)}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-in">
+    <div class="nav-social">
+      <span class="lbl">Contáctanos</span>
+      <a class="soc" data-wa target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.500a8.500 8.500 0 0 1-12.400 7.500L3 20.500l1.600-5.400A8.500 8.500 0 1 1 21 11.500z"/><path d="M9 9.200c.2 2.400 2.400 4.600 5 5.600l1.200-1.300-1.800-.9-.8.700c-.9-.4-1.600-1.100-2-2l.7-.8-.9-1.800z"/></svg>
+      </a>
+      <a class="soc" data-ig target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.500" y="3.500" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r=".7" fill="currentColor"/></svg>
+      </a>
+      <a class="soc" data-tt target="_blank" rel="noopener" aria-label="TikTok" title="TikTok">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v11.500a3.500 3.500 0 1 1-3.500-3.500M14 3c.4 2.400 2.100 4 4.500 4.200"/></svg>
+      </a>
+    </div>
+    <a class="brand" href="#top" aria-label="Inicio">
+      <img id="logo" alt="Logo" hidden>
+      <span id="storeName">INSIGNIA</span>
+    </a>
+    <div class="ship">Envíos a toda Venezuela</div>
+  </div>
+</header>
+
+<section class="intro" id="top">
+  <div>
+    <h1>Camisetas de <em>fútbol</em>, clubes y selecciones.</h1>
+    <p>Toca una camiseta para ver las tallas y si está disponible. Los pedidos se hacen por WhatsApp a tasa BCV. Envios por MRW y Zoom</p>
+    <div class="go-row">
+      <a class="go" href="#catalogo">Ver el catálogo ↓</a>
+      <a class="go go2" href="#tallas">Guía de tallas</a>
+      <a class="pers" href="#catalogo" id="persBtn">Personaliza tu camisa <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+  <div class="frame" id="frame">
+    <div class="frame-img" id="heroBox" role="button" tabindex="0" aria-label="Ver camiseta destacada">
+      <img id="heroImg" alt="" referrerpolicy="no-referrer" fetchpriority="high" decoding="async">
+    </div>
+    <div class="frame-cap">
+      <div>
+        <div class="nm" id="heroT"></div>
+        <div class="dt" id="heroS"></div>
+      </div>
+      <div class="arrows">
+        <button type="button" id="heroPrev" aria-label="Anterior">←</button>
+        <span id="heroN"></span>
+        <button type="button" id="heroNext" aria-label="Siguiente">→</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cat" id="catalogo">
+  <div class="cat-head">
+    <div class="cat-title"><h2>Catálogo</h2><span class="disc">Descuento del <b>10%</b> para pagos por Binance</span></div>
+    <div class="tabs" id="sizeTabs" role="group" aria-label="Filtrar por talla"><span class="tlab">Talla</span></div>
+    <div class="tabs" id="tabs" role="group" aria-label="Filtrar por disponibilidad">
+      <button type="button" class="tab on" data-f="all">Todas</button>
+      <button type="button" class="tab" data-f="disponible">Disponibles</button>
+      <button type="button" class="tab" data-f="encargo">Por encargo</button>
+    </div>
+  </div>
+  <div class="grid" id="grid"></div>
+  <p class="none" id="none" hidden>Por ahora no hay camisetas en esta categoría.</p>
+</section>
+
+<section class="vers" id="versiones">
+  <div class="guide-in">
+    <div class="guide-head">
+      <h2>Fan o Jugador</h2>
+      <p>Las camisetas por encargo se pueden pedir en las dos versiones. Esta es la diferencia:</p>
+    </div>
+    <div class="vers-grid" id="versGrid"></div>
+  </div>
+</section>
+
+<section class="guide" id="tallas">
+  <div class="guide-in">
+    <div class="guide-head">
+      <h2>Guía de tallas</h2>
+      <p>Medidas de la camiseta según la talla. Compara con tu estatura y tu peso para elegir mejor.</p>
+      <div class="tabs chart-tabs" id="chartTabs" role="group" aria-label="Versión de la camiseta">
+        <button type="button" class="tab on" data-c="fan">Versión fan</button>
+        <button type="button" class="tab" data-c="jugador">Versión jugador</button>
+      </div>
+    </div>
+    <div class="guide-body">
+      <div class="tbl-wrap"><table class="tbl" id="sizeTbl"></table></div>
+      <figure class="shirt-fig">
+        <svg viewBox="0 0 220 200" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true">
+          <path d="M76 18 L44 30 L10 70 L38 92 L56 78 L56 178 L164 178 L164 78 L182 92 L210 70 L176 30 L144 18 Q110 46 76 18Z"/>
+          <path d="M60 120 H160 M68 113 L60 120 L68 127 M152 113 L160 120 L152 127"/>
+          <path d="M80 26 V176 M73 34 L80 26 L87 34 M73 168 L80 176 L87 168"/>
+          <text x="116" y="110" text-anchor="middle" id="figW">Ancho</text>
+          <text x="90" y="154" text-anchor="start">Largo</text>
+        </svg>
+        <figcaption id="figCap"></figcaption>
+      </figure>
+    </div>
+    <p class="guide-note">Las medidas se toman a mano, así que puede haber 2 o 3 cm de diferencia. ¡Gracias por entender!</p>
+  </div>
+</section>
+
+<footer>
+  <b>INSIGNIA</b><br>Pedidos y envíos por WhatsApp
+  <div class="foot-social">
+    <a class="soc" data-wa target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.500a8.500 8.500 0 0 1-12.400 7.500L3 20.500l1.600-5.400A8.500 8.500 0 1 1 21 11.500z"/><path d="M9 9.200c.2 2.400 2.400 4.600 5 5.600l1.200-1.300-1.800-.9-.8.700c-.9-.4-1.600-1.100-2-2l.7-.8-.9-1.800z"/></svg>
+      </a>
+    <a class="soc" data-ig target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.500" y="3.500" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r=".7" fill="currentColor"/></svg>
+      </a>
+    <a class="soc" data-tt target="_blank" rel="noopener" aria-label="TikTok" title="TikTok">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v11.500a3.500 3.500 0 1 1-3.500-3.500M14 3c.4 2.400 2.100 4 4.500 4.200"/></svg>
+      </a>
+  </div>
+</footer>
+
+<a class="fab" data-wa target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.500a8.500 8.500 0 0 1-12.400 7.500L3 20.500l1.600-5.400A8.500 8.500 0 1 1 21 11.500z"/></svg>
+  Escríbenos
+</a>
+
+<!-- Ventana de detalle -->
+<div class="scrim" id="scrim"></div>
+<div class="modal-wrap" id="modalWrap" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mName">
+    <button class="xbtn" id="mClose" aria-label="Cerrar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div class="pic" id="mPic"></div>
+    <div class="body">
+      <h2 id="mName"></h2>
+      <div class="subl" id="mSub"></div>
+      <div class="mprice" id="mPrice"></div>
+      <div class="stat" id="mStat"></div>
+      <div class="incl" id="mIncl" hidden>✓ Incluye dorsal</div>
+      <div>
+        <div class="labrow"><div class="lab" id="mSizesLab">Tallas</div><a class="glink" href="#tallas" id="mGuide">Guía de tallas</a></div>
+        <div class="sizes" id="mSizes"></div>
+      </div>
+      <div id="mVerBox" hidden>
+        <div class="labrow"><div class="lab">Versión</div><a class="glink" href="#versiones" id="mVerGuide">¿Qué diferencia hay?</a></div>
+        <div class="sizes" id="mVer"></div>
+      </div>
+      <div class="custom" id="mCustom" hidden>
+        <div class="lab">Personaliza tu camiseta</div>
+        <div class="opt" id="cOpt">
+          <label class="chk"><input type="checkbox" id="cOn"><span>Nombre y número <b id="cPrice"></b></span></label>
+          <div class="cfields" id="cFields" hidden>
+            <input id="cName" maxlength="12" placeholder="Nombre (ej. MESSI)" autocomplete="off" autocapitalize="characters" spellcheck="false">
+            <input id="cNum" maxlength="2" inputmode="numeric" placeholder="Nº" autocomplete="off">
+          </div>
+        </div>
+        <div class="opt">
+          <label class="chk"><input type="checkbox" id="pOn"><span>Agregar parches <b id="pPrice"></b></span></label>
+          <div class="cfields one" id="pFields" hidden>
+            <input id="pTxt" maxlength="40" placeholder="¿Cuáles? (ej. Champions League, LaLiga)" autocomplete="off">
+          </div>
+        </div>
+      </div>
+      <div class="total" id="mTotal" hidden><span>Total</span><b id="mTotalV"></b></div>
+      <p class="note" id="mNote"></p>
+      <a class="cta" id="mCta" target="_blank" rel="noopener"></a>
+    </div>
+  </div>
+</div>
+
+<!-- Foto ampliada (celular) -->
+<div class="lb" id="lb" aria-hidden="true">
+  <button class="lbx" id="lbX" aria-label="Cerrar"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <img id="lbImg" alt="">
+  <div class="lbh">Toca para acercar · arrastra para mover</div>
+</div>
+
+<script>
+/* ============================================================
+   CONFIGURACIÓN  ← EDITA SOLO ESTA PARTE
+   ============================================================ */
+const CONFIG = {
+  storeName:   "INSIGNIA",                             // Título que aparece junto al logo
+  whatsapp:    "5804246984213",                         // Código de país + número, sin + ni espacios (Colombia = 57)
+  instagram:   "INSIGNIA.VZLA",                         // Tu usuario, sin @
+  tiktok:      "INSIGNIA.VZLA",                            // Tu usuario, sin @
+  defaultPrice:"$29.99",                               // Precio ACTUAL (de oferta) de todas las camisetas (si una lleva su propio price, se usa ese)
+  oldPrice:    "$39.99",                               // Precio ANTERIOR (tachado). Déjalo "" si no quieres oferta. El % de descuento se calcula solo
+  logoDriveId: "1N2vAhGkUKHUZZ56f-r0JG-TUmgw0NxCO",    // ID del logo en Google Drive
+  patchesPrice:"",                                     // Costo extra por agregar parches (ej. "$4.00"). Si lo dejas "" se avisa "precio por WhatsApp"
+  playerExtra: "$4.00",                                // Costo extra de la versión Jugador en las camisetas por encargo (la versión Fan es el precio normal). Déjalo "" para quitar la opción
+  customPrice: "$3.50",                                // Costo extra por personalizar con nombre y número. Déjalo "" para quitar la opción
+  logoImg:     ""                                      // Opcional: ruta de un logo subido al repositorio, ej. "logo.png" (se usa en vez de Drive)
+};
+
+/* Tallas que se muestran según el estado de la camiseta.
+   Las tallas L y XL solo aparecen en las camisetas por encargo. */
+const SIZES = {
+  disponible: ["S", "M"],
+  encargo:    ["S", "M", "L", "XL", "XXL", "3XL", "4XL"],
+  agotada:    ["S", "M"]
+};
+
+/* Guía de tallas (la tabla que ven los clientes): talla, ancho, largo, estatura, peso */
+const SIZE_CHART_HEAD = ["Talla", "Ancho (cm)", "Largo (cm)", "Estatura (cm)", "Peso (kg)"];   // VERSIÓN FAN
+const SIZE_CHART = [
+  ["S",   "48-50", "71-73", "160-165", "60-65"],
+  ["M",   "52-54", "73-75", "165-170", "66-70"],
+  ["L",   "54-56", "75-77", "170-175", "71-75"],
+  ["XL",  "56-58", "77-79", "175-180", "76-80"],
+  ["XXL", "58-60", "79-81", "180-185", "81-87"],
+  ["3XL", "60-62", "80-82", "185-190", "88-95"],
+  ["4XL", "62-64", "81-83", "190-195", "96-103"]
+];
+
+/* Guía de tallas VERSIÓN JUGADOR: talla, largo, ½ pecho, estatura, peso */
+const SIZE_CHART_PLAYER_HEAD = ["Talla", "Largo (cm)", "½ Pecho (cm)", "Estatura (cm)", "Peso (kg)"];
+const SIZE_CHART_PLAYER = [
+  ["S",   "68-70", "43-45", "160-165", "50-60"],
+  ["M",   "70-72", "45-47", "165-170", "60-65"],
+  ["L",   "72-74", "47-49", "170-175", "65-70"],
+  ["XL",  "74-76", "49-51", "175-180", "70-80"],
+  ["XXL", "76-78", "51-53", "180-185", "80-90"],
+  ["3XL", "78-80", "53-56", "185-190", "90-100"],
+  ["4XL", "82-84", "60",    "—",       "—"]
+];
+
+/* Texto de "Fan o Jugador" (sección explicativa de la página). Puedes editarlo cuando quieras. */
+const VERSION_INFO = {
+  fan: {
+    title: "Versión Fan",
+    sub: "La camiseta que usa el aficionado",
+    points: ["Escudo bordado", "Corte regular, cómodo para el día a día", "Tela resistente y fácil de cuidar", "Es la opción más económica"]
+  },
+  jugador: {
+    title: "Versión Jugador",
+    sub: "Como la que usan los jugadores en la cancha",
+    points: ["Escudo de silicona", "Corte más ajustado (slim), se pega más al cuerpo", "Tela más ligera y transpirable", "Detalles y acabados de mayor calidad", "Si estás entre dos tallas, pide la más grande"]
+  }
+};
+
+/* Opciones del filtro de talla que ven los clientes (agrega "XL" si quieres que también salga) */
+const SIZE_FILTERS = ["S", "M", "L"];
+
+/* Cada camiseta:
+   id:      ID de la foto principal en Google Drive (lo que va entre /d/ y /view en el link). null = espacio vacío "Próximamente"
+   cover:   (opcional) foto de PORTADA, la que se ve primero (por ejemplo la de la silueta). Puede ser el link de Drive, su ID o una ruta como "fotos/real-madrid.jpg".
+            Al deslizar se ve después la foto principal (id) y las de "more"
+   more:    (opcional) más fotos para deslizar, en lista y entre comillas, separadas por coma:
+            more:["https://drive.google.com/file/d/XXXX/view", "fotos/otra.jpg"]
+   name:    nombre que verá el cliente, por ejemplo "Real Madrid"
+   detail:  (opcional) detalle corto, por ejemplo "Local", "Visitante" o "Blanca"
+   price:   (opcional) precio actual propio de esa camiseta, por ejemplo "$24.99". Si lo dejas "" se usa defaultPrice (arriba)
+   oldPrice:(opcional) precio anterior (tachado) propio de esa camiseta, por ejemplo "$34.99". Si lo dejas "" se usa oldPrice (arriba)
+   custom:  (opcional) false = esa camiseta por encargo no ofrece personalización, parches ni dorsal (solo las camisetas por encargo lo ofrecen)
+   version:  (opcional) en las camisetas disponibles: "fan" o "jugador" (solo para mostrarlo). En las de por encargo el cliente elige Fan o Jugador (+playerExtra)
+   dorsal:   (opcional) false = esa camiseta disponible viene SIN dorsal (si no lo pones, se dice que incluye dorsal)
+   sale:    (opcional) false = esa camiseta se muestra sin oferta, solo con su precio
+   status:  "disponible" | "encargo" (por encargo) | "agotada"
+   sizes:   (opcional) tallas propias de esa camiseta; si no lo pones se usan las de SIZES según el estado
+   img:     (opcional) ruta de una imagen subida al repositorio, ej. "fotos/01.jpg" (se usa en vez de Drive)
+   hero:    (opcional) true = solo aparecen en el recuadro de la portada las que lo tengan. Si ninguna lo tiene, salen TODAS.
+            El recuadro junto al título usa la primera foto de "more" (no la cover). Si una camiseta no tiene "more", usa la foto principal.
+*/
+const SHIRTS = [
+  { id:"https://drive.google.com/drive/folders/1K5bHN0qE3-jiW3N0_bsgXY1YIkL-kdPw?usp=drive_link", cover:"https://drive.google.com/file/d/1szFgAS5o4eKUrMrtSWY-FYpn9e1zdyZs/view?usp=drive_link", more:["https://drive.google.com/file/d/1hlmjQWyX1VA2d3x_xRuxmDzKEEJMUwKM/view?usp=drive_link"], name:"FC Bayern 26-27", detail:"Local", price:"28.99$", version:"fan", sizes:["M"], status:"disponible" },
+  /* Sin fotos todavía: cuando las tengas pon el link de la foto en cover:"..." y las demás en more:["..."] */
+  { id:"https://drive.google.com/drive/folders/1fwYm2i4QOrQ2eH321kOikhMJQwfwsar7?usp=drive_link", cover:"https://drive.google.com/file/d/1szFgAS5o4eKUrMrtSWY-FYpn9e1zdyZs/view?usp=drive_link", more:["https://drive.google.com/file/d/1dYTnne9BgVlAgg27YKZY1EgopVxsewH3/view?usp=drive_link"], name:"FC Bayern 26-27", detail:"Local", price:"32.99$", version:"jugador", sizes:["M"], status:"disponible" },
+  { id:"https://drive.google.com/drive/folders/1-R7viIWdwX09XujNGMuP2Wc_j4pSWqHw?usp=drive_link", cover:"https://drive.google.com/file/d/1PvXd0BJo_EXLSe5Ktpxim-i_ruRnSzUK/view?usp=drive_link", more:["https://drive.google.com/file/d/1oxTmNWpIQOtHMtcDu5phawjnn9Jhl5FD/view?usp=drive_link"], name:"FC Barcelona 26-27", detail:"Edicion Kobe Bryant", price:"35.99$", version:"jugador", sizes:["L"], status:"disponible" },
+  { id:"https://drive.google.com/drive/folders/1EQm-Vqx1CPxCaaYoKJIWm6kFqF37zJaN?usp=drive_link", cover:"https://drive.google.com/file/d/1k1yPVzyRctBGFP01ABtCMDmIanF35wTH/view?usp=drive_link", more:["https://drive.google.com/file/d/1ztJDWLKjnT_n72HPmrIPs20C6Yv6jRGa/view?usp=drive_link"], name:"FC Barcelona 26-27", detail:"Local", price:"28.99$", version:"fan", sizes:["M"], status:"disponible" },
+  { id:"https://drive.google.com/drive/folders/1PtGknkHRdndtKGZOzkJp5x2VE9d8imaQ?usp=drive_link", cover:"https://drive.google.com/file/d/133YMm-PQjIgeHwnG6f9GEcGc9SeHc8GC/view?usp=drive_link", more:["https://drive.google.com/file/d/1qMqmW0w2KSebPrThfzKYzNpceWy7LKaW/view?usp=drive_link"], name:"FC Barcelona 26-27", detail:"Tercera Equipacion", price:"28.99$", version:"fan", sizes:["M"], status:"disponible" },
+  { id:"https://drive.google.com/drive/folders/1gYO90QRFa8Wyl6ul6tzBNteFp4QDuv0n?usp=drive_link", cover:"https://drive.google.com/file/d/1bho4w_5QyjZtk-7QMEe7tokDYOwvLnlb/view?usp=drive_link", more:["https://drive.google.com/file/d/1o6GTQTiK5jfhHdvXtJpv8rOAFs--sJ5e/view?usp=drive_link"], name:"Real Madrid 26-27", detail:"Visitante", price:"28.99$", version:"fan", sizes:["M"], status:"disponible" },
+  { id:"https://drive.google.com/drive/folders/1mL_a_6mFC9TdzzMV3tSeMA2AD_zIYD2a?usp=drive_link", cover:"https://drive.google.com/file/d/1K_qaqeWrrqN3oeukQiiX7FzH_tal9SPd/view?usp=drive_link", more:["https://drive.google.com/file/d/1S89EXqA5HsxIUy7jFz8ZtvxsnQKoloG2/view?usp=drive_link"], name:"Juventus 26-27", detail:"Local", price:"32.99$", version:"jugador", sizes:["L"], status:"disponible" },
+  { id:"https://drive.google.com/drive/folders/1N0jdKVw_p1EV4QpNZYahQbHSxJbXaFAM?usp=drive_link", cover:"https://drive.google.com/file/d/16nUufjE41-12UXtNmVfLB7H86kQIzhdO/view?usp=drive_link", more:["https://drive.google.com/file/d/1QF4i-f1Wh81DxaIyp6ZztihJA2SLvNlg/view?usp=drive_link"], name:"Noruega Mundial", detail:"Visitante", price:"34.99$", version:"jugador", sizes:["M"], status:"disponible" },
+  { id:"https://drive.google.com/drive/folders/1GGthrnrdQMZi0mmXX54ChnCG2v9YFLuo?usp=drive_link", cover:"https://drive.google.com/file/d/1C0Jj9ijcjDbEFJtY7mtMjtQ4-j7eGFfo/view?usp=drive_link", more:["https://drive.google.com/file/d/12k0iDTMdd9TzHx8hCHbxYmtIW9aXHfL1/view?usp=drive_link"], name:"España Mundial", detail:"Visitante", price:"32.99$", version:"jugador", sizes:["M"], status:"disponible" },
+  { id:"https://drive.google.com/drive/folders/1C6tEef8UzyTApH0n0FVPAggELLIU-Urc?usp=drive_link", cover:"https://drive.google.com/file/d/1YgKe6E_0nBzFZtGSX3Pit1vPdJvDZL3n/view?usp=drive_link", more:["https://drive.google.com/file/d/1HVpmNu4kf97A5EJNVK47EeCRb-BZFV_b/view?usp=drive_link"], name:"Arsenal 26-27", detail:"Local", price:"25.99$", version:"fan", dorsal:false, sizes:["M"], status:"disponible" },
+  { id:"https://drive.google.com/drive/folders/165sMzQ0vHW_55_bDF2tZ3bkw9Lf2ff9g?usp=drive_link", cover:"https://drive.google.com/file/d/1zCXQIIE3lM8d-Zt5Lt7v30DvRdqEm9Ad/view?usp=drive_link", more:["https://drive.google.com/file/d/15Hz_0TK_wxMaQ1f4FemM260de6A-sJHG/view?usp=drive_link"], name:"Santos FC 12-13",  detail:"Local",               price:"32.99$", version:"fan", sizes:["M"], status:"disponible" },
+  { id:"https://drive.google.com/drive/folders/1CXoQt-KNPkQ9XdlR7qzhwbdE5sEffz0q?usp=drive_link", cover:"https://drive.google.com/file/d/1y3LmvJdsb5tbxCzJwxZztKGn0xq_18Mr/view?usp=drive_link", more:["hhttps://drive.google.com/file/d/1GCZ_edLMTkFdXtkq7Tchy0WsRw84tHG6/view?usp=drive_link"], name:"Manchester United 26-27", detail:"Local", price:"25.99$", version:"fan", dorsal:false, sizes:["M"], status:"disponible" },
+  { id:"https://drive.google.com/drive/folders/1hicqT9ZWXxObBbO3RocAUOOLLkHnmIUB?usp=drive_link", cover:"https://drive.google.com/file/d/1LQfnGHKxB5LcJ7Up5qwlxALaIsnmaWBk/view?usp=drive_link", more:["https://drive.google.com/file/d/1hdofMrM9E1e9Tz9gYwzA7IM7odCvGBZk/view?usp=drive_link"], name:"Lyon FC 26-27",  detail:"Tercera Equipacion",               price:"24.99$", status:"Por encargo" },
+  { id:"https://drive.google.com/drive/folders/1VV2rkSfeDdb3wqN2GbOaKhEyrOuekf1S?usp=drive_link", cover:"https://drive.google.com/file/d/1oOkJYu6IjFhUu2d-trNs3jR0zkf6N6jt/view?usp=drive_link", more:["https://drive.google.com/file/d/1zudFyVV1EICpuZNdbGP7WCzTrz8JhyLm/view?usp=drive_link"], name:"Chelsea 26-27",  detail:"Local",               price:"24.99$", status:"Por encargo" },
+  { id:"https://drive.google.com/drive/folders/1l8TMUpuHzNUdieavRtHPeQiBsN84mKqL?usp=drive_link", cover:"https://drive.google.com/file/d/1GhZ_hTbqgxcVz5wXSM3qJDStyfAL9FLB/view?usp=drive_link", more:["https://drive.google.com/file/d/1SvgpaQsHexXYZhPs6t7D6vezQ-wdRFGY/view?usp=drive_link"], name:"Atletico de Madrid 26-27",  detail:"Local",               price:"24.99$", status:"Por encargo" },
+  { id:"https://drive.google.com/drive/folders/1mL_a_6mFC9TdzzMV3tSeMA2AD_zIYD2a?usp=drive_link", cover:"https://drive.google.com/file/d/1K_qaqeWrrqN3oeukQiiX7FzH_tal9SPd/view?usp=drive_link", more:["https://drive.google.com/file/d/1S89EXqA5HsxIUy7jFz8ZtvxsnQKoloG2/view?usp=drive_link"], name:"Juventus 26-27", detail:"Local", price:"28.99$", status:"Por encargo" },
+  { id:"https://drive.google.com/drive/folders/1Sw148fPbOYMTQzJ0iavEX3rsggNMTYEx?usp=drive_link", cover:"https://drive.google.com/file/d/1uz6HvXERYpCuAqU1ieAiuXCs7GhaaHJN/view?usp=drive_link", more:["https://drive.google.com/file/d/1FkTcZh1cSThPR_ATJl9_jYSFljhDdAV1/view?usp=drive_link"], name:"Escocia 26-27",  detail:"Local",               price:"24.99$", status:"Por encargo" },
+  { id:"https://drive.google.com/drive/folders/19FcJKPQLlYdI1lHjKjQH6kdl7LirZXWZ?usp=drive_link", cover:"https://drive.google.com/file/d/1zNKboo7izjY8zSBIlzzDMgy5yvNhabl4/view?usp=drive_link", more:["https://drive.google.com/file/d/1X0aYrBc73SVJmQvLN9BhJMZDpSG5YpgB/view?usp=drive_link"], name:"Liverpool 26-27", detail:"Visitante", price:"28.99$", version:"jugador", dorsal:false, sizes:["L"], status:"disponible" },
+  { id:"https://drive.google.com/drive/folders/19FcJKPQLlYdI1lHjKjQH6kdl7LirZXWZ?usp=drive_link", cover:"https://drive.google.com/file/d/15JdHWFEbPaKUPPzCQoezWz98q7aJx4dN/view?usp=drive_link", more:["https://drive.google.com/file/d/1_6_Nel2XTi0J4SWqlbUvFYZzY2p23y48/view?usp=drive_link"], name:"Liverpool 26-27",  detail:"Tercera Equipacion",               price:"24.99$", status:"Por encargo" },
+  { id:"https://drive.google.com/drive/folders/1UwcFZbmezmDXN2TXTIzRiqwjHkl-H84P?usp=drive_link", cover:"https://drive.google.com/file/d/1OIiMK5PvpNop968XuXv9F1XrdQMC9uqn/view?usp=drive_link", more:["https://drive.google.com/file/d/1QbwCXCsuNbeqTTeAfNzv7Zs13g4aNyUX/view?usp=drive_link"], name:"River Plate 26-27", detail:"Local", price:"24.99$", status:"Por encargo" },
+  { id:"https://drive.google.com/drive/folders/1XIfyW4z8B8am74l5_8HDDz02N5GbMwyt?usp=drive_link", cover:"https://drive.google.com/file/d/1ka20xXUqyiEkjzclO5ciKYSKsolQHjAW/view?usp=drive_link", more:["https://drive.google.com/file/d/1mUsBg1rZN7ANA4ny9HiLtaA_0qrBBWLe/view?usp=drive_link"], name:"Newcastle 26-27", detail:"Tercera Equipacion", price:"25.99$", version:"fan", dorsal:false, sizes:["M"], status:"disponible" },
+  { id:"https://drive.google.com/drive/folders/1G7EB2OkpyScl8XRqNMlTEmUscXZsOd-S?usp=drive_link", cover:"https://drive.google.com/file/d/1HESYPSI7xMbGimhp9rJ0tyogn3mdVshz/view?usp=drive_link", more:["https://drive.google.com/file/d/1maTqnC-7qRRKbC2USy0UF0n4oDOWGeoB/view?usp=drive_link"], name:"AC Milan 26-27", detail:"Visitante", price:"25.99$", version:"", dorsal:false, status:"Por encargo" },
+  { id:"https://drive.google.com/drive/folders/1l8F6qCtoqFuOLzxTcZD2hDZ7duHH390Q?usp=drive_link", cover:"https://drive.google.com/file/d/1CTUVLUHderHuNvFMijs_4VnJODUkUEQr/view?usp=drive_link", more:["https://drive.google.com/file/d/1g6IdFfYzP-XXWD0nRr85WdoLr1rIf_Ru/view?usp=drive_link"], name:"Venezuela 26", detail:"Visitante", price:"25.99$", version:"", dorsal:false, status:"Por encargo" },
+];
+/* ============================================================
+   FIN DE LA CONFIGURACIÓN
+   ============================================================ */
+
+const $ = s => document.querySelector(s);
+const esc = t => String(t ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const waLink = text => `https://wa.me/${CONFIG.whatsapp}` + (text ? `?text=${encodeURIComponent(text)}` : "");
+const driveImg = (id, w) => `https://drive.google.com/thumbnail?id=${id}&sz=w${w}`;
+const imgSrc = (s, w = 800) => s.img ? s.img : (s.id ? driveImg(s.id, w) : "");
+/* "Próximamente" = espacio vacío sin nombre. Una camiseta con nombre pero sin fotos aún sí se muestra (con "Foto próximamente") */
+const isEmpty = s => !s.id && !s.img && !s.cover && !(s.more || []).length && (!s.name || /pr[oó]ximamente/i.test(s.name));
+/* acepta "disponible", "encargo", "Por encargo", "agotada"... en mayúsculas o minúsculas */
+const statusOf = s => { const v = String(s.status || "disponible").toLowerCase(); return v.includes("encargo") ? "encargo" : v.includes("agot") ? "agotada" : "disponible"; };
+const priceOf = s => s.price || CONFIG.defaultPrice || "";
+/* oferta: precio anterior tachado + % de descuento calculado solo */
+const num = t => { const m = String(t || "").replace(",", ".").match(/\d+(?:\.\d+)?/); return m ? parseFloat(m[0]) : NaN; };
+const oldPriceOf = s => (s.sale === false || !priceOf(s)) ? "" : (s.oldPrice || CONFIG.oldPrice || "");
+/* precio según la versión: en las de por encargo, "jugador" suma playerExtra al precio (que es el de la versión Fan) */
+const priceFor = (s, v) => (v === "jugador" && statusOf(s) === "encargo" && CONFIG.playerExtra) ? money(num(priceOf(s)) + num(CONFIG.playerExtra), priceOf(s)) : priceOf(s);
+const offOf = (s, v) => { const a = num(oldPriceOf(s)), b = num(priceFor(s, v)); return a > b && b > 0 ? Math.round((1 - b / a) * 100) : 0; };
+const verLabel = s => s.version ? "Versión " + String(s.version).toLowerCase() : "";
+const infoLine = s => statusOf(s) === "encargo"
+  ? (CONFIG.playerExtra ? `Versión fan o jugador (+${CONFIG.playerExtra})` : "")
+  : statusOf(s) === "disponible" ? [verLabel(s), s.dorsal === false ? "Sin dorsal" : "Incluye dorsal"].filter(Boolean).join(" · ") : "";
+const priceHtml = (s, v) => (oldPriceOf(s) ? `<span class="was">${esc(oldPriceOf(s))}</span>` : "") + `<span class="now">${esc(priceFor(s, v))}</span>`;
+const sizesOf = s => s.sizes || SIZES[statusOf(s)] || [];
+
+/* ---------- Fotos de cada camiseta ---------- */
+/* Orden: portada (cover) → foto principal (img / id) → las demás (more) */
+const isDriveId = p => /^[\w-]{15,}$/.test(p);
+/* acepta el ID de Drive, el link completo de Drive o una ruta como "fotos/01.jpg" */
+const cleanPhoto = p => { const m = String(p).match(/drive\.google\.com\/.*?(?:\/d\/|[?&]id=)([\w-]{15,})/); return m ? m[1] : String(p).trim(); };
+const photoSrc = (p, w) => { p = cleanPhoto(p); return isDriveId(p) ? driveImg(p, w) : p; };
+/* solo se aceptan links/IDs de FOTOS de Drive o rutas locales; los links de carpetas de Drive se ignoran */
+const validPhoto = p => isDriveId(p) || !p.includes("://");
+const photosOf = s => [s.cover, s.img || s.id, ...(s.more || [])].filter(Boolean).map(cleanPhoto).filter(validPhoto);
+/* fotos del recuadro junto al título: primero las de "more"; si no hay, la foto principal; la portada (cover) va al final */
+const heroPhotosOf = s => [...(s.more || []), s.img || s.id, s.cover].filter(Boolean).map(cleanPhoto).filter(validPhoto);
+
+/* las fotos de cada tarjeta se descargan cuando la tarjeta está cerca de la pantalla (primero la 1.ª, luego las demás) */
+const lazyObs = "IntersectionObserver" in window ? new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return;
+  lazyObs.unobserve(e.target); e.target._load();
+}), { rootMargin: "900px 0px" }) : null;
+
+function buildGallery(photos, alt, w, auto, lazy) {
+  const g = document.createElement("div"); g.className = "gal";
+  const track = document.createElement("div"); track.className = "track";
+  g.appendChild(track);
+  if (!photos.length) { track.innerHTML = '<div class="empty">Foto próximamente</div>'; return g; }
+  const dots = document.createElement("div"); dots.className = "gdots";
+  const srcs = [];                                       // foto original de cada slide (en el mismo orden)
+  let idx = 0;
+  const count = () => track.children.length;
+  const paint = () => {
+    track.style.transform = `translateX(${-idx * 100}%)`;
+    dots.querySelectorAll("i").forEach((el, j) => el.classList.toggle("on", j === idx));
+  };
+  const set = i => { const n = count(); if (!n) return; idx = ((i % n) + n) % n; paint(); };
+  g.go = d => set(idx + d);
+  g.show = i => set(i);                              // siguiente / anterior (da la vuelta)
+  g.current = () => srcs[idx];
+  g.count = count;
+  const rebuildDots = () => {
+    dots.innerHTML = "";
+    if (count() > 1) for (let k = 0; k < count(); k++) dots.appendChild(document.createElement("i"));
+    paint();
+  };
+  photos.forEach(p => {
+    const sl = document.createElement("div"); sl.className = "slide";
+    const im = document.createElement("img");
+    im.alt = alt; im.referrerPolicy = "no-referrer"; im.draggable = false;
+    im.onerror = () => {                                 // si una foto no carga, se quita y se ve la siguiente
+      const i = [...track.children].indexOf(sl); if (i < 0) return;
+      sl.remove(); srcs.splice(i, 1);
+      if (!count()) { track.innerHTML = '<div class="empty">Foto próximamente</div>'; dots.remove(); return; }
+      idx = Math.min(idx, count() - 1); rebuildDots();
+    };
+    im.decoding = "async"; im.dataset.src = photoSrc(p, w);
+    if (!lazy || !lazyObs) im.src = im.dataset.src;
+    sl.appendChild(im); track.appendChild(sl); srcs.push(p);
+  });
+  g.appendChild(dots);
+  rebuildDots();
+  if (lazy && lazyObs) {
+    g._load = () => {
+      const ims = [...g.querySelectorAll("img[data-src]")];
+      ims.forEach((im, k) => { const go = () => { if (!im.getAttribute("src")) im.src = im.dataset.src; }; k ? setTimeout(go, 350 * k) : go(); });
+    };
+    lazyObs.observe(g);
+  }
+
+  if (photos.length > 1) {
+    [["prev", "‹", -1, "Foto anterior"], ["next", "›", 1, "Foto siguiente"]].forEach(([c, t, d, label]) => {
+      const b = document.createElement("button");
+      b.type = "button"; b.className = "garrow " + c; b.textContent = t; b.setAttribute("aria-label", label);
+      b.addEventListener("click", e => { e.stopPropagation(); g.go(d); });
+      g.appendChild(b);
+    });
+
+    /* deslizar con el dedo (celular / tablet): lo manejamos nosotros, sin depender del scroll del navegador */
+    let sx = 0, sy = 0, dx = 0, lock = null, pid = null, dragged = false;
+    g.addEventListener("pointerdown", e => {
+      if (e.pointerType === "mouse" || count() < 2) return;
+      sx = e.clientX; sy = e.clientY; dx = 0; lock = null; pid = e.pointerId;
+    });
+    g.addEventListener("pointermove", e => {
+      if (e.pointerId !== pid) return;
+      const mx = e.clientX - sx, my = e.clientY - sy;
+      if (!lock) {
+        if (Math.abs(mx) < 7 && Math.abs(my) < 7) return;
+        lock = Math.abs(mx) > Math.abs(my) ? "x" : "y";
+        if (lock === "x") { if (g._holdNow) g._holdNow(); track.classList.add("drag"); try { g.setPointerCapture(pid); } catch (_) {} }
+      }
+      if (lock !== "x") return;
+      dx = mx;
+      const edge = (idx === 0 && dx > 0) || (idx === count() - 1 && dx < 0);
+      track.style.transform = `translateX(calc(${-idx * 100}% + ${edge ? dx * 0.35 : dx}px))`;
+    });
+    const end = e => {
+      if (e.pointerId !== pid) return;
+      pid = null; track.classList.remove("drag");
+      if (lock === "x") {
+        dragged = true; setTimeout(() => { dragged = false; }, 120);
+        const n = count();
+        if (Math.abs(dx) > g.clientWidth * 0.16) idx = Math.max(0, Math.min(n - 1, idx + (dx < 0 ? 1 : -1)));
+        paint();
+      }
+      lock = null;
+    };
+    g.addEventListener("pointerup", end);
+    g.addEventListener("pointercancel", end);
+    g.addEventListener("click", e => { if (dragged) { e.stopPropagation(); e.preventDefault(); } }, true);
+  }
+  if (auto && photos.length > 1) registerAuto(g);
+  return g;
+}
+
+/* ---------- Deslizado automático (todas las camisetas al mismo tiempo) ---------- */
+const AUTO_MS = 7000;                       // tiempo entre fotos (milisegundos)
+const autoSet = new Set();
+let autoPhase = 0, autoNext = Date.now() + AUTO_MS;
+const resetAuto = () => { autoPhase = 0; autoNext = Date.now() + AUTO_MS; };   // al mostrar el catálogo todas empiezan en la foto 1 (silueta)
+function registerAuto(g) {
+  g._hold = 0;
+  const hold = () => { g._hold = Date.now() + 2500; };      // solo si el cliente desliza o usa las flechas: pausa corta y luego se vuelve a sincronizar
+  g._holdNow = hold;                                        // (tocar la pantalla para bajar por la página NO pausa nada)
+  g.querySelectorAll(".garrow").forEach(b => b.addEventListener("click", hold));
+  autoSet.add(g);
+}
+setInterval(() => {
+  const now = Date.now();
+  if (now < autoNext) return;
+  autoNext = now + AUTO_MS;
+  if (modalOpen) return;
+  autoPhase++;                                              // un solo reloj para todas: todas pasan a la misma foto a la vez
+  autoSet.forEach(g => {
+    if (!g.isConnected) { autoSet.delete(g); return; }
+    if (now < g._hold) return;
+    g.show(autoPhase % g.count());
+  });
+}, 250);
+
+/* ---------- Zoom de la foto en la ventana de detalle ---------- */
+const FINE = matchMedia("(hover:hover) and (pointer:fine)");
+const ZOOM = 2.5;
+function setupZoom(g) {
+  if (!g.current) return;
+  const modal = document.querySelector(".modal");
+  if (FINE.matches && innerWidth >= 760) {
+    /* computador: lupa sobre la foto y ventana de ampliación al lado (como en las tiendas en línea) */
+    let pane = modal.querySelector(".zoompane");
+    if (!pane) { pane = document.createElement("div"); pane.className = "zoompane"; pane.innerHTML = '<img alt="">'; modal.appendChild(pane); }
+    const zimg = pane.firstChild;
+    const lens = document.createElement("div"); lens.className = "lens"; g.appendChild(lens);
+    g.classList.add("zoomable");
+    const hide = () => { lens.style.display = "none"; pane.style.display = "none"; };
+    let key = "";
+    g.addEventListener("mousemove", e => {
+      if (e.target.closest(".garrow")) { hide(); return; }
+      const r = g.getBoundingClientRect(), bw = r.width, bh = r.height, lw = bw / ZOOM, lh = bh / ZOOM;
+      const lx = Math.max(0, Math.min(bw - lw, e.clientX - r.left - lw / 2));
+      const ly = Math.max(0, Math.min(bh - lh, e.clientY - r.top - lh / 2));
+      Object.assign(lens.style, { display: "block", width: lw + "px", height: lh + "px", left: lx + "px", top: ly + "px" });
+      pane.style.display = "block";
+      const p = g.current();
+      if (key !== p) {
+        key = p; zimg.src = photoSrc(p, 1200);
+        const big = new Image(); big.referrerPolicy = "no-referrer";
+        big.onload = () => { if (key === p) zimg.src = big.src; };
+        big.src = photoSrc(p, 2000);
+      }
+      zimg.style.width = bw * ZOOM + "px"; zimg.style.height = bh * ZOOM + "px";
+      zimg.style.transform = `translate(${-lx * ZOOM}px,${-ly * ZOOM}px)`;
+    });
+    g.addEventListener("mouseleave", hide);
+  } else {
+    /* celular: tocar la foto la abre a pantalla completa para acercarla */
+    const h = document.createElement("span"); h.className = "zhint"; h.textContent = "Toca para ampliar"; g.appendChild(h);
+    g.addEventListener("click", e => { if (!e.target.closest(".garrow")) openLightbox(g.current()); });
+  }
+}
+const lb = $("#lb"), lbImg = $("#lbImg");
+let lz = 1, lx = 0, ly = 0, lpid = null, lsx = 0, lsy = 0, lmoved = false;
+const lbApply = () => { lbImg.style.transform = `translate(${lx}px,${ly}px) scale(${lz})`; };
+function openLightbox(p) {
+  lz = 1; lx = ly = 0; lbApply();
+  lbImg.src = photoSrc(p, 2000);
+  lb.classList.add("open"); lb.setAttribute("aria-hidden", "false");
+}
+function closeLightbox() { lb.classList.remove("open"); lb.setAttribute("aria-hidden", "true"); }
+lbImg.addEventListener("pointerdown", e => { lpid = e.pointerId; lsx = e.clientX - lx; lsy = e.clientY - ly; lmoved = false; lbImg.setPointerCapture(lpid); });
+lbImg.addEventListener("pointermove", e => {
+  if (e.pointerId !== lpid || lz === 1) return;
+  const nx = e.clientX - lsx, ny = e.clientY - lsy;
+  if (Math.abs(nx - lx) + Math.abs(ny - ly) > 2) { lmoved = true; lbImg.style.transition = "none"; }
+  lx = nx; ly = ny; lbApply();
+});
+lbImg.addEventListener("pointerup", e => {
+  if (e.pointerId !== lpid) return;
+  lpid = null; lbImg.style.transition = "";
+  if (!lmoved) { if (lz === 1) lz = ZOOM; else { lz = 1; lx = ly = 0; } lbApply(); }
+});
+$("#lbX").addEventListener("click", closeLightbox);
+document.addEventListener("keydown", e => { if (e.key === "Escape" && lb.classList.contains("open")) closeLightbox(); });
+
+const STATUS_TXT = { disponible: "Disponible", encargo: "Por encargo", agotada: "Agotada" };
+const TAG_CLS = { disponible: "", encargo: "order", agotada: "no" };
+
+/* ---------- Encabezado, logo y enlaces ---------- */
+document.title = `${CONFIG.storeName} · Camisetas de fútbol`;
+$("#storeName").textContent = CONFIG.storeName;
+const logoSrc = CONFIG.logoImg || (CONFIG.logoDriveId ? driveImg(CONFIG.logoDriveId, 400) : "");
+if (logoSrc) {
+  const lg = $("#logo");
+  lg.referrerPolicy = "no-referrer";
+  lg.onload = () => { lg.hidden = false; };
+  lg.onerror = () => { lg.remove(); };
+  lg.src = logoSrc;
+  const fav = document.createElement("link");
+  fav.rel = "icon"; fav.href = CONFIG.logoImg || driveImg(CONFIG.logoDriveId, 128);
+  document.head.appendChild(fav);
+}
+const hello = "Hola, vi tu catálogo y quiero información.";
+document.querySelectorAll("[data-wa]").forEach(a => a.href = waLink(hello));
+document.querySelectorAll("[data-ig]").forEach(a => a.href = `https://instagram.com/${CONFIG.instagram}`);
+document.querySelectorAll("[data-tt]").forEach(a => a.href = `https://www.tiktok.com/@${CONFIG.tiktok}`);
+
+/* ---------- Catálogo ---------- */
+let filter = "all", sizeF = "all";
+/* "Todas" no incluye las camisetas por encargo: esas solo salen en la pestaña "Por encargo" */
+const matchesWith = (s, f, z) => !isEmpty(s) && (f === "all" ? statusOf(s) !== "encargo" : statusOf(s) === f) && (z === "all" || sizesOf(s).includes(z));
+
+function renderGrid() {
+  const grid = $("#grid");
+  grid.innerHTML = "";
+  resetAuto();
+  let shown = 0;
+  SHIRTS.forEach((s, i) => {
+    const empty = isEmpty(s);
+    const stt = statusOf(s);
+    if (empty ? (filter !== "all" || sizeF !== "all") : !matchesWith(s, filter, sizeF)) return;
+
+    const el = document.createElement("div");
+    el.className = "card" + (empty ? " placeholder" : "") + (!empty && stt === "agotada" ? " soldout" : "");
+    const ph = document.createElement("div"); ph.className = "ph";
+    if (empty) {
+      ph.innerHTML = `<div class="empty">Próximamente</div>`;
+      el.appendChild(ph);
+    } else {
+      el.setAttribute("role", "button"); el.tabIndex = 0;
+      el.addEventListener("click", () => openModal(i));
+      el.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openModal(i); } });
+      ph.innerHTML = `<span class="tag ${TAG_CLS[stt]}">${STATUS_TXT[stt]}</span>` + (offOf(s) ? `<span class="off">-${offOf(s)}%</span>` : "");
+      ph.appendChild(buildGallery(photosOf(s), s.name, innerWidth < 760 ? 480 : 600, true, true));
+      el.appendChild(ph);
+      const cap = document.createElement("div"); cap.className = "cap";
+      cap.innerHTML = `
+          <div class="top">${sizesOf(s).join(" · ")}</div>
+          <div class="nmrow">
+            <div class="nm">${esc(s.name)}</div>
+            <div class="pr ${priceOf(s) ? "" : "ask"}">${priceOf(s) ? priceHtml(s) : "Consultar"}</div>
+          </div>
+          ${s.detail ? `<div class="dt">${esc(s.detail)}</div>` : ""}
+          ${infoLine(s) ? `<div class="inc">${esc(infoLine(s))}</div>` : ""}`;
+      el.appendChild(cap);
+    }
+    grid.appendChild(el);
+    shown++;
+  });
+  $("#none").hidden = shown > 0;
+  renderTabs();
+}
+
+/* marca la opción activa y apaga las que no darían ninguna camiseta */
+function renderTabs() {
+  $("#sizeTabs").hidden = filter === "encargo";
+  document.querySelectorAll("#tabs .tab").forEach(b => {
+    const n = SHIRTS.filter(s => matchesWith(s, b.dataset.f, sizeF)).length;
+    b.classList.toggle("on", b.dataset.f === filter);
+    b.disabled = n === 0 && b.dataset.f !== filter;
+  });
+  document.querySelectorAll("#sizeTabs .tab").forEach(b => {
+    const n = SHIRTS.filter(s => matchesWith(s, filter, b.dataset.z)).length;
+    b.classList.toggle("on", b.dataset.z === sizeF);
+    b.disabled = n === 0 && b.dataset.z !== sizeF;
+  });
+}
+
+$("#tabs").innerHTML = [["all", "Todas"], ["disponible", "Disponibles"], ["encargo", "Por encargo"]]
+  .map(([f, t]) => `<button type="button" class="tab" data-f="${f}">${t}</button>`).join("");
+$("#sizeTabs").insertAdjacentHTML("beforeend",
+  SIZE_FILTERS.map(z => `<button type="button" class="tab" data-z="${z}">${z}</button>`).join(""));
+
+$("#tabs").addEventListener("click", e => {
+  const b = e.target.closest(".tab"); if (!b || b.disabled) return;
+  filter = b.dataset.f;
+  if (filter === "encargo") sizeF = "all";   // en "Por encargo" no se filtra por talla
+  renderGrid();
+});
+$("#sizeTabs").addEventListener("click", e => {
+  const b = e.target.closest(".tab"); if (!b || b.disabled) return;
+  sizeF = sizeF === b.dataset.z ? "all" : b.dataset.z;   // tocar de nuevo la talla activa la quita
+  renderGrid();
+});
+
+/* ---------- Ventana de detalle ---------- */
+let modalOpen = false, current = null, selectedSize = null, selectedVer = "fan";
+const verPlayer = () => statusOf(current) === "encargo" && selectedVer === "jugador" && !!CONFIG.playerExtra;
+/* solo las camisetas por encargo se pueden personalizar (nombre y número, parches, dorsal) */
+const canCustom = x => x.custom !== false && statusOf(x) === "encargo";
+const money = (n, ref = CONFIG.defaultPrice || "") => String(ref).trim().endsWith("$") ? n.toFixed(2) + "$" : "$" + n.toFixed(2);   // respeta tu estilo: "$30.00" o "30.00$"
+function openModal(i) {
+  current = SHIRTS[i]; selectedSize = null; selectedVer = "fan";
+  const cs = statusOf(current);
+  const gal = buildGallery(photosOf(current), current.name, 1200);
+  $("#mPic").replaceChildren(gal);
+  setupZoom(gal);
+  $("#mCustom").hidden = !canCustom(current);
+  $("#cOpt").hidden = !CONFIG.customPrice;
+  [["c", CONFIG.customPrice], ["p", CONFIG.patchesPrice]].forEach(([k, pr]) => {
+    const b = $("#" + k + "Price"); b.textContent = pr ? "+" + pr : "(precio por WhatsApp)"; b.classList.toggle("tbd", !pr);
+    $("#" + k + "On").checked = false; $("#" + k + "Fields").hidden = true;
+  });
+  ["cName", "cNum", "pTxt"].forEach(id => { $("#" + id).value = ""; });
+  $("#mName").textContent = current.name;
+  const subTxt = [current.detail, statusOf(current) === "disponible" ? verLabel(current) : ""].filter(Boolean).join(" · ");
+  $("#mSub").textContent = subTxt;
+  $("#mSub").style.display = subTxt ? "" : "none";
+  renderMPrice();
+  const vb = $("#mVerBox"), vbox = $("#mVer");
+  vb.hidden = !(cs === "encargo" && CONFIG.playerExtra);
+  vbox.innerHTML = "";
+  [["fan", "Fan"], ["jugador", "Jugador +" + CONFIG.playerExtra]].forEach(([v, t]) => {
+    const bt = document.createElement("button");
+    bt.type = "button"; bt.className = "size" + (v === selectedVer ? " sel" : ""); bt.textContent = t; bt.dataset.v = v;
+    bt.addEventListener("click", () => {
+      selectedVer = v;
+      vbox.querySelectorAll(".size").forEach(x => x.classList.toggle("sel", x.dataset.v === selectedVer));
+      updateCta();
+    });
+    vbox.appendChild(bt);
+  });
+
+  $("#mStat").className = "stat " + (cs === "encargo" ? "order" : cs === "agotada" ? "no" : "");
+  $("#mStat").textContent = cs === "agotada" ? "Agotada por ahora" : STATUS_TXT[cs];
+  $("#mIncl").hidden = cs !== "disponible";
+  $("#mIncl").textContent = current.dorsal === false ? "Sin dorsal" : "✓ Incluye dorsal";
+  $("#mSizesLab").textContent = cs === "disponible" ? "Tallas disponibles" : "Tallas";
+  $("#mNote").textContent = cs === "encargo"
+    ? "Esta camiseta se pide por encargo. Te confirmamos el tiempo de llegada por WhatsApp."
+    : cs === "agotada" ? "Por ahora no hay stock. Escríbenos y te avisamos cuando vuelva." : "";
+  $("#mNote").style.display = $("#mNote").textContent ? "" : "none";
+
+  const box = $("#mSizes");
+  box.innerHTML = "";
+  sizesOf(current).forEach(sz => {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "size"; b.textContent = sz;
+    b.addEventListener("click", () => {
+      selectedSize = selectedSize === sz ? null : sz;
+      box.querySelectorAll(".size").forEach(x => x.classList.toggle("sel", x.textContent === selectedSize));
+      updateCta();
+    });
+    box.appendChild(b);
+  });
+  if (!box.children.length) box.innerHTML = `<span class="note">Consulta por WhatsApp</span>`;
+
+  updateCta();
+  modalOpen = true;
+  $("#modalWrap").classList.add("open"); $("#modalWrap").setAttribute("aria-hidden", "false");
+  $("#scrim").classList.add("open"); document.body.style.overflow = "hidden";
+}
+function renderMPrice() {
+  const pr = priceFor(current, selectedVer), mp = $("#mPrice");
+  mp.innerHTML = pr
+    ? `<div class="mprow">${priceHtml(current, selectedVer)}${offOf(current, selectedVer) ? `<span class="off">-${offOf(current, selectedVer)}%</span>` : ""}</div>`
+    : "Precio por WhatsApp";
+  mp.className = "mprice" + (pr ? "" : " ask");
+}
+function updateCta() {
+  renderMPrice();
+  const cta = $("#mCta");
+  const cs = statusOf(current);
+  const talla = selectedSize ? `, talla ${selectedSize}` : "";
+  const who = `${current.name}${current.detail ? " " + current.detail.toLowerCase() : ""}`;
+  const ex = []; let sum = num(priceFor(current, selectedVer)), priced = verPlayer();
+  const ver = cs === "encargo" && CONFIG.playerExtra ? `, versión ${selectedVer}` + (verPlayer() ? ` (+${CONFIG.playerExtra})` : "") : (current.version ? `, versión ${String(current.version).toLowerCase()}` : "");
+  const addP = pr => { if (pr) { sum += num(pr); priced = true; return ` (+${pr})`; } return " (precio a confirmar)"; };
+  if (cs === "encargo" && canCustom(current)) {
+    if ($("#cOn").checked && CONFIG.customPrice) {
+      const nm = $("#cName").value.trim(), nu = $("#cNum").value;
+      ex.push((nm || nu ? [nm && `nombre ${nm}`, nu && `número ${nu}`].filter(Boolean).join(" y ") : "nombre y número") + addP(CONFIG.customPrice));
+    }
+    if ($("#pOn").checked) { const t = $("#pTxt").value.trim(); ex.push("parches" + (t ? " " + t : "") + addP(CONFIG.patchesPrice)); }
+  }
+  const extra = ex.length ? ", con: " + ex.join("; ") : "";
+  const total = (ex.length || verPlayer()) && priced && sum > 0 ? money(sum, priceOf(current)) : "";
+  $("#mTotal").hidden = !total;
+  $("#mTotalV").textContent = total;
+  const tail = total ? ` Total: ${total}.` : "";
+  if (cs === "disponible") {
+    cta.textContent = selectedSize ? `Pedir talla ${selectedSize} por WhatsApp` : "Pedir por WhatsApp";
+    cta.href = waLink(`Hola, me interesa la camiseta ${who}${talla}${ver}${extra}.${tail} ¿Sigue disponible?`);
+  } else if (cs === "encargo") {
+    cta.textContent = selectedSize ? `Encargar talla ${selectedSize} por WhatsApp` : "Encargar por WhatsApp";
+    cta.href = waLink(`Hola, quiero encargar la camiseta ${who}${talla}${ver}${extra}.${tail} ¿Cuánto tarda en llegar?`);
+  } else {
+    cta.textContent = "Avisarme cuando vuelva";
+    cta.href = waLink(`Hola, me interesa la camiseta ${who}${talla}. ¿Cuándo vuelve a estar disponible?`);
+  }
+}
+function closeModal() {
+  modalOpen = false; const zp = document.querySelector(".zoompane"); if (zp) zp.style.display = "none";
+  $("#modalWrap").classList.remove("open"); $("#modalWrap").setAttribute("aria-hidden", "true");
+  $("#scrim").classList.remove("open"); document.body.style.overflow = "";
+}
+[["cOn", "cFields", "cName"], ["pOn", "pFields", "pTxt"]].forEach(([o, f, i]) =>
+  $("#" + o).addEventListener("change", e => { $("#" + f).hidden = !e.target.checked; if (e.target.checked) $("#" + i).focus({ preventScroll: true }); updateCta(); }));
+$("#cName").addEventListener("input", e => { e.target.value = e.target.value.toUpperCase().replace(/[^A-ZÁÉÍÓÚÜÑ ]/g, ""); updateCta(); });
+$("#cNum").addEventListener("input", e => { e.target.value = e.target.value.replace(/\D/g, "").slice(0, 2); updateCta(); });
+$("#pTxt").addEventListener("input", updateCta);
+$("#mGuide").addEventListener("click", e => {
+  e.preventDefault();
+  renderChart(verPlayer() || (statusOf(current) !== "encargo" && String(current.version).toLowerCase() === "jugador") ? "jugador" : "fan");
+  closeModal(); setTimeout(() => $("#tallas").scrollIntoView(), 30);
+});
+$("#mVerGuide").addEventListener("click", e => { e.preventDefault(); closeModal(); setTimeout(() => $("#versiones").scrollIntoView(), 30); });
+$("#mClose").addEventListener("click", closeModal);
+$("#modalWrap").addEventListener("click", e => { if (e.target.id === "modalWrap") closeModal(); });
+$("#scrim").addEventListener("click", closeModal);
+document.addEventListener("keydown", e => { if (e.key === "Escape" && modalOpen) closeModal(); });
+
+/* ---------- Recuadro de la portada ---------- */
+let heroList = SHIRTS.filter(s => s.hero && !isEmpty(s) && heroPhotosOf(s).length);
+if (!heroList.length) heroList = SHIRTS.filter(s => !isEmpty(s) && heroPhotosOf(s).length);
+let heroIdx = 0, heroTimer = null;
+
+function showHero(n) {
+  if (!heroList.length) { $("#frame").style.display = "none"; return; }
+  heroIdx = (n + heroList.length) % heroList.length;
+  const s = heroList[heroIdx];
+  const img = $("#heroImg");
+  img.style.opacity = 0;
+  img.onload = () => { img.style.opacity = 1; };
+  const fotos = heroPhotosOf(s);
+  let k = 0;
+  img.onerror = () => { k++; if (fotos[k]) img.src = photoSrc(fotos[k], 1000); };   // si una foto no carga, prueba la siguiente
+  img.src = photoSrc(fotos[0], 1000);
+  const nx = heroList[(heroIdx + 1) % heroList.length], nf = nx && heroPhotosOf(nx)[0];
+  if (nf && heroList.length > 1) setTimeout(() => { const pre = new Image(); pre.referrerPolicy = "no-referrer"; pre.src = photoSrc(nf, 1000); }, 1200);
+  img.alt = s.name;
+  $("#heroT").textContent = s.name;
+  $("#heroS").textContent = [s.detail, STATUS_TXT[statusOf(s)]].filter(Boolean).join(" · ");
+  $("#heroN").textContent = `${String(heroIdx + 1).padStart(2, "0")} / ${String(heroList.length).padStart(2, "0")}`;
+}
+function startHero() {
+  clearInterval(heroTimer);
+  if (heroList.length < 2 || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  heroTimer = setInterval(() => showHero(heroIdx + 1), 6000);
+}
+$("#heroPrev").addEventListener("click", () => { showHero(heroIdx - 1); startHero(); });
+$("#heroNext").addEventListener("click", () => { showHero(heroIdx + 1); startHero(); });
+if (heroList.length < 2) document.querySelector(".arrows").style.visibility = "hidden";
+const openHero = () => openModal(SHIRTS.indexOf(heroList[heroIdx]));
+$("#heroBox").addEventListener("click", openHero);
+$("#heroBox").addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openHero(); } });
+
+/* deslizar el recuadro de la portada con el dedo */
+let tx = null;
+$("#heroBox").addEventListener("touchstart", e => { tx = e.touches[0].clientX; }, { passive: true });
+$("#heroBox").addEventListener("touchend", e => {
+  if (tx === null) return;
+  const dx = e.changedTouches[0].clientX - tx; tx = null;
+  if (Math.abs(dx) > 45) { showHero(heroIdx + (dx < 0 ? 1 : -1)); startHero(); }
+}, { passive: true });
+
+let chartVer = "fan";
+function renderChart(v) {
+  chartVer = v === "jugador" ? "jugador" : "fan";
+  const head = chartVer === "jugador" ? SIZE_CHART_PLAYER_HEAD : SIZE_CHART_HEAD;
+  const rows = chartVer === "jugador" ? SIZE_CHART_PLAYER : SIZE_CHART;
+  $("#sizeTbl").innerHTML = "<thead><tr>" + head.map(h => `<th>${esc(h)}</th>`).join("") + "</tr></thead><tbody>" +
+    rows.map(r => "<tr>" + r.map(c => `<td>${esc(c)}</td>`).join("") + "</tr>").join("") + "</tbody>";
+  $("#figW").textContent = chartVer === "jugador" ? "½ Pecho" : "Ancho";
+  $("#figCap").textContent = chartVer === "jugador"
+    ? "½ Pecho: la mitad del contorno del pecho (de axila a axila) · Largo: de arriba a abajo"
+    : "Ancho: de lado a lado a la altura del pecho · Largo: de arriba a abajo";
+  document.querySelectorAll("#chartTabs .tab").forEach(b => b.classList.toggle("on", b.dataset.c === chartVer));
+}
+$("#chartTabs").addEventListener("click", e => { const b = e.target.closest(".tab"); if (b) renderChart(b.dataset.c); });
+renderChart("fan");
+$("#versGrid").innerHTML = ["fan", "jugador"].map(k => {
+  const v = VERSION_INFO[k];
+  const pr = k === "jugador" ? (CONFIG.playerExtra ? `+${esc(CONFIG.playerExtra)} sobre el precio normal` : "") : "Precio normal";
+  return `<div class="vcard"><h3>${esc(v.title)}</h3><div class="vsub">${esc(v.sub)}</div><ul>${v.points.map(t => `<li>${esc(t)}</li>`).join("")}</ul>${pr ? `<div class="vprice">${pr}</div>` : ""}</div>`;
+}).join("");
+/* "Personaliza tu camisa": abre el catálogo en la pestaña "Por encargo" */
+$("#persBtn").addEventListener("click", e => {
+  e.preventDefault();
+  filter = "encargo"; sizeF = "all"; renderGrid();
+  $("#catalogo").scrollIntoView({ behavior: "smooth" });
+});
+showHero(0); startHero();
+renderGrid();
+</script>
+</body>
+</html>
